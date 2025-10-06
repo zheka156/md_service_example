@@ -1,0 +1,5 @@
+binance:
+  url: "https://data-api.binance.vision"
+http_server:
+  port: 8080
+  host: "localhost"

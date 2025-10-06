@@ -1,0 +1,24 @@
+@startuml New user flow
+
+title Base interaction
+actor User
+participant Notion as Notion
+participant MD as MarketData
+
+User -> Notion : Add integration
+MD -> MD : Check relation for user/db
+MD -> Notion : Get User's databases
+alt Database not found
+    MD -> Notion : Create a new database
+end
+User -> Notion : Input ticker data
+MD -> Notion : Get ticker data
+MD -> MD : Date exist check (internal)
+loop 4 times for entered tickers
+    MD -> Coinbase : Get prices
+    MD --> Notion : Return actual price
+end 
+
+@enduml
+
+'User may delete update date and get new data'
